@@ -3,20 +3,32 @@ import Listview from './components/Listview';
 import Header from './components/Header';
 import Toolbar from './components/Toolbar';
 import Back from './back/back';
-
+import { useState } from "react";
 
 function App() {
-  const data = [
-    'line1', 'line2', 'line3', 'line4', 'line5', 'line6', 'line7',
-  ];
+
+  const [date, setDate] = useState(new Date());
+  let [data, setData] = useState([]);
 
   const back = new Back();
+
+  function onClick(e) {
+    setDate(addDays(date, parseInt(e.target.value)));
+    data = back.request(date);
+    setData(data);
+  }
+
+	function addDays(date, days) {
+		let result = new Date(date);
+		result.setDate(result.getDate() + days)
+		return result;
+	}
 
   return (
   <div className="app">
       <Header/>
-      <Toolbar/>
-      <Listview data={data}/>
+      <Toolbar onClick={onClick} date={date}/>
+      <Listview data={data} />
     </div>
   );
 }

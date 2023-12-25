@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './mvp.css';
+//import './mvp.css';
 import './index.css';
 import App from './App';
 
